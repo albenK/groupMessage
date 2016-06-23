@@ -56,7 +56,7 @@
 			window.onload = function()
 			{
 				var theSocket = io.connect();
-				console.log("document is ready");
+				//console.log("document is ready");
 				var theChatBox = document.getElementById("chatBox");
 				var theForm = document.getElementById("messageForm");
 				var usersName = document.getElementById("username");
@@ -79,15 +79,10 @@
 				{
 					var messageNode = document.createElement("p");
 					messageNode.innerHTML = data;
-					//var lineBreakNode = document.createElement("br");
-					//messageNode.style.backgroundColor = "#3399FF";
 					theChatBox.appendChild(messageNode);
 					theChatBox.scrollTop = theChatBox.scrollHeight;
 					theChatBox.scrollLeft = 0;
-					//theChatBox.appendChild(lineBreakNode);
 				});
-
-				
 			};
 		</script>
 	</body>

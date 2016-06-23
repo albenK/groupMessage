@@ -2,29 +2,34 @@
   "applicationName": "group-message",
   "version": "0.0.1",
   "private": "true",
-  "main": "src/app.js",
-  "dependencies": {
+  "main": "index.js",
+  "dependencies" : 
+  {
     "socket.io": "1.4.6",
     "express": "4.14.0"
   },
   "name": "group-message",
   "description": "a simple group messaging application",
   "devDependencies": {},
-  "scripts": {
+  "scripts" : 
+  {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
+  "repository": 
+  {
     "type": "git",
     "url": "git+https://github.com/albenK/groupMessage.git"
   },
-  "keywords": [
+  "keywords" : 
+  [
     "group",
     "messaging",
     "app"
   ],
   "author": "Alben Kalambukadu",
   "license": "MIT",
-  "bugs": {
+  "bugs": 
+  {
     "url": "https://github.com/albenK/groupMessage/issues"
   },
   "homepage": "https://github.com/albenK/groupMessage#readme"
