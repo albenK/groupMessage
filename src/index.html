@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>group-message</title>
+		<style>
+			#chatBox
+			{
+				width:500px;
+				height:500px;
+				/*border-radius:10px; */
+				/*background-color: #e6e6e6;*/
+				text-align: left;
+				overflow: scroll;
+			}
+			#chatBox p
+			{
+				position: relative;
+				width:200px;
+				margin-left: 10px;
+				background-color: #3399FF;
+				color:#FFF;
+				border-radius: 5px;
+				font-size:20px;
+				word-wrap: break-word;
+
+
+			}
+			#message
+			{
+				border-radius: 10px;
+			}
+			#sendButton
+			{
+				background-color: #3399FF;
+				border-style: hidden;
+				border-radius: 5px;
+				text-align: center;
+				width: 50px;
+				height: 50px;
+
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div id="chatBox"></div>
+		<form id="messageForm">
+			Type your name:<input type="text" id="username"></input><br></br>
+			<textarea id="message" rows="4" cols="50"></textarea>
+			<input type="submit" id="sendButton" value="SEND"></input>
+		</form>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			window.onload = function()
+			{
+				var theSocket = io.connect();
+				console.log("document is ready");
+				var theChatBox = document.getElementById("chatBox");
+				var theForm = document.getElementById("messageForm");
+				var usersName = document.getElementById("username");
+				var userMessage = document.getElementById("message");
+				
+				theForm.addEventListener("submit", function(event) // add submit event listener.
+				{
+					
+					event.preventDefault(); // prevents page from refreshing..
+					if(userMessage.value != "" && usersName.value != "")
+					{
+						theSocket.emit("usersMessage", usersName.value+": "+userMessage.value); // send message to the server.
+						userMessage.value = ""; // reset the value of the texbox..	
+					}
+					else{alert("type in a username and a message!");}
+				});
+
+				// when we recieve data back from the server. First param is the name of the event and second param is what happens upon recieving data.
+				theSocket.on("thisUsersMessage", function(data) 
+				{
+					var messageNode = document.createElement("p");
+					messageNode.innerHTML = data;
+					//var lineBreakNode = document.createElement("br");
+					//messageNode.style.backgroundColor = "#3399FF";
+					theChatBox.appendChild(messageNode);
+					theChatBox.scrollTop = theChatBox.scrollHeight;
+					theChatBox.scrollLeft = 0;
+					//theChatBox.appendChild(lineBreakNode);
+				});
+
+				
+			};
+		</script>
+	</body>
+</html>

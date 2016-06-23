@@ -1,0 +1,11 @@
+{
+	"applicationName" : "group-message",
+	"version" : "0.0.1",
+	"private" : "true",
+	"main" : "src/app.js",
+	"dependencies" :
+	{
+		"socket.io" : "1.4.6",
+		"express" : "4.14.0"
+	}
+}
